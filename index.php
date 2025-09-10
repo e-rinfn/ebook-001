@@ -82,7 +82,7 @@ try {
 
                   <!-- Gambar sebelah kiri -->
                   <div class="text-center col-md-6 mb-4 mb-md-0 p-3">
-                    <img src="assets/images/books.jpg" width="350px" class="img-fluid rounded shadow-sm" alt="Koleksi E-Book SMP">
+                    <img src="assets/images/Gambar-Buku.png" width="350px" class="img-fluid rounded shadow-sm" alt="Koleksi E-Book SMP">
                   </div>
 
                   <!-- Deskripsi sebelah kanan -->
