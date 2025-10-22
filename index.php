@@ -222,9 +222,9 @@ try {
                             <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
                             <p class="card-text mb-3"><small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small></p>
 
-                            <div class="mt-auto">
-                              <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca</a>
-                            </div>
+                            <!-- <div class="mt-auto">
+                              <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
+                            </div> -->
 
                             <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
                               Baca E-Book
@@ -271,9 +271,9 @@ try {
                       <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
                       <p class="card-text mb-3"><small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small></p>
 
-                      <div class="mt-auto">
-                        <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca</a>
-                      </div>
+                      <!-- <div class="mt-auto">
+                        <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
+                      </div> -->
 
                       <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
                         Baca E-Book
