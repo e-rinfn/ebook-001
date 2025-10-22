@@ -189,12 +189,12 @@ try {
                 </iframe>
 
                 <!-- Fallback jika PDF gagal dimuat -->
-                <div id="pdfFallback" style="display:none; text-align:center; padding:20px; color:white;">
+                <!-- <div id="pdfFallback" style="display:none; text-align:center; padding:20px; color:white;">
                     <p>📄 PDF tidak dapat ditampilkan di perangkat ini.</p>
                     <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>"
                         target="_blank"
                         class="btn-control">Download</a>
-                </div>
+                </div> -->
             <?php endif; ?>
         </div>
 
