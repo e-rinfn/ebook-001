@@ -107,15 +107,37 @@ try {
                 <form method="get" action="">
 
 
-                  <div class="col-md-4 m-0">
-                    <!-- Tombol untuk membuka modal filter -->
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#filterModal">
-                      <i class="fe fe-filter mr-2"></i>Filter dan Cari Buku
-                    </button>
-                    <?php if (!empty($searchQuery) || !empty($categoryFilters)): ?>
-                      <a href="?" class="btn btn-outline-secondary ml-2">Reset</a>
-                    <?php endif; ?>
+                  <div class="col-md-12">
+                    <div class="row align-items-center">
+                      <!-- Tombol Filter -->
+                      <div class="col-md-3 mb-2">
+                        <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#filterModal">
+                          <i class="fe fe-filter mr-2"></i>Filter
+                        </button>
+                      </div>
+
+                      <!-- Input Cari Buku + Tombol Cari -->
+                      <div class="col-md-7 mb-2">
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="searchModal" name="search"
+                            placeholder="Judul, penulis, atau deskripsi..."
+                            value="<?= htmlspecialchars($searchQuery) ?>">
+                          <button class="btn btn-primary rounded-0" type="submit">
+                            <i class="fe fe-search"></i> Cari
+                          </button>
+                        </div>
+                      </div>
+
+
+                      <!-- Tombol Reset -->
+                      <div class="col-md-2 mb-2">
+                        <?php if (!empty($searchQuery) || !empty($categoryFilters)): ?>
+                          <a href="?" class="btn btn-outline-secondary w-100">Reset</a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
                   </div>
+
 
 
                   <!-- Modal Filter -->
@@ -131,11 +153,7 @@ try {
                         <div class="modal-body">
                           <div class="container-fluid">
                             <div class="row">
-                              <div class="col-12 mb-4">
-                                <label for="searchModal" class="form-label">Cari Buku</label>
-                                <input type="text" class="form-control" id="searchModal" name="search"
-                                  placeholder="Judul, penulis, atau deskripsi..." value="<?= htmlspecialchars($searchQuery) ?>">
-                              </div>
+
 
                               <div class="col-12">
                                 <label class="form-label d-block mb-3">Filter Kategori</label>
@@ -161,7 +179,7 @@ try {
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Tutup</button>
-                          <button type="submit" class="btn btn-danger">Terapkan Filter</button>
+                          <button type="submit" class="btn btn-primary">Terapkan Filter</button>
                         </div>
                       </div>
                     </div>
@@ -173,7 +191,7 @@ try {
             <!-- Hasil Pencarian -->
             <?php if (!empty($searchQuery) || !empty($categoryFilters)): ?>
               <div class="mb-4">
-                <h3>Hasil Pencarian</h3>
+                <h3>Hasil Filter dan Pencarian</h3>
                 <?php if (empty($filteredBooks)): ?>
                   <div class="alert alert-info">
                     Tidak ditemukan buku yang sesuai dengan kriteria pencarian.
@@ -194,7 +212,7 @@ try {
 
                             <p class="card-text text-justify" id="desc-<?= $book['id']; ?>">
                               <?= nl2br(htmlspecialchars(mb_strimwidth($book['deskripsi'], 0, 150, '...'))) ?>
-                              <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a>
+                              <!-- <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a> -->
                             </p>
                             <p class="card-text text-justify d-none" id="desc-full-<?= $book['id']; ?>">
                               <?= nl2br(htmlspecialchars($book['deskripsi'])) ?>
@@ -207,13 +225,12 @@ try {
                             <div class="mt-auto">
                               <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
                             </div>
+                            <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
+                              Lihat Detail
+                            </a>
                           </div>
-
                         </div>
                       </div>
-
-
-
                     <?php endforeach; ?>
                   </div>
                 <?php endif; ?>
@@ -239,7 +256,7 @@ try {
 
                       <p class="card-text text-justify" id="desc-<?= $book['id']; ?>">
                         <?= nl2br(htmlspecialchars(mb_strimwidth($book['deskripsi'], 0, 150, '...'))) ?>
-                        <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a>
+                        <!-- <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a> -->
                       </p>
                       <p class="card-text text-justify d-none" id="desc-full-<?= $book['id']; ?>">
                         <?= nl2br(htmlspecialchars($book['deskripsi'])) ?>
@@ -252,6 +269,9 @@ try {
                       <div class="mt-auto">
                         <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
                       </div>
+                      <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
+                        Lihat Detail
+                      </a>
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 <?php
 // Konfigurasi koneksi database
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'ebook-safa');
+define('DB_NAME', 'ebook-001');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
