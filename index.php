@@ -82,8 +82,25 @@ try {
 
                   <!-- Gambar sebelah kiri -->
                   <div class="text-center col-md-6 mb-4 mb-md-0 p-3">
-                    <img src="assets/images/Gambar-Buku.png" width="350px" class="img-fluid rounded shadow-sm" alt="Koleksi E-Book SMP">
+                    <img src="assets/images/Gambar-Buku.png"
+                      class="img-fluid rounded shadow-sm responsive-img"
+                      alt="Koleksi E-Book SMP">
                   </div>
+
+                  <style>
+                    /* Ukuran default (desktop) */
+                    .responsive-img {
+                      width: 350px;
+                    }
+
+                    /* Ketika lebar layar di bawah 768px (smartphone/tablet kecil) */
+                    @media (max-width: 768px) {
+                      .responsive-img {
+                        width: 150px;
+                      }
+                    }
+                  </style>
+
 
                   <!-- Deskripsi sebelah kanan -->
                   <div class="col-md-6">
@@ -122,7 +139,7 @@ try {
                           <input type="text" class="form-control" id="searchModal" name="search"
                             placeholder="Judul, penulis, atau deskripsi..."
                             value="<?= htmlspecialchars($searchQuery) ?>">
-                          <button class="btn btn-primary rounded-0" type="submit">
+                          <button class="btn btn-danger rounded-0" type="submit">
                             <i class="fe fe-search"></i> Cari
                           </button>
                         </div>
@@ -132,7 +149,9 @@ try {
                       <!-- Tombol Reset -->
                       <div class="col-md-2 mb-2">
                         <?php if (!empty($searchQuery) || !empty($categoryFilters)): ?>
-                          <a href="?" class="btn btn-outline-secondary w-100">Reset</a>
+                          <a href="?" class="btn btn-outline-secondary w-100">
+                            <i class="fe fe-clock"></i> Reset
+                          </a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -190,8 +209,9 @@ try {
 
             <!-- Hasil Pencarian -->
             <?php if (!empty($searchQuery) || !empty($categoryFilters)): ?>
-              <div class="mb-4">
-                <h3>Hasil Filter dan Pencarian</h3>
+              <div class="mb-4 bg-light p-2">
+                <h3 class="text-center mt-3">Hasil Filter dan Pencarian</h3>
+                <hr>
                 <?php if (empty($filteredBooks)): ?>
                   <div class="alert alert-info">
                     Tidak ditemukan buku yang sesuai dengan kriteria pencarian.
