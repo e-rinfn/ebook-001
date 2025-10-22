@@ -197,22 +197,6 @@ try {
                 </div> -->
             <?php endif; ?>
         </div>
-
-        <script>
-            // Script fallback otomatis untuk Android / browser tanpa PDF viewer
-            window.addEventListener('load', () => {
-                const iframe = document.getElementById('pdfViewer');
-                const fallback = document.getElementById('pdfFallback');
-
-                // Jika setelah 2 detik iframe belum bisa dimuat, tampilkan fallback
-                setTimeout(() => {
-                    if (iframe && iframe.contentDocument === null) {
-                        iframe.style.display = 'none';
-                        fallback.style.display = 'block';
-                    }
-                }, 2000);
-            });
-        </script>
     </div>
 
     <script>
