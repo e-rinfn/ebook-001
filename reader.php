@@ -174,9 +174,10 @@ try {
                 <!-- <button class="btn-control" onclick="toggleFullscreen()" title="Layar Penuh (F11)">
           <i class="fe fe-maximize"></i>
         </button> -->
-                <button class="btn-control" onclick="window.location.href='detail.php?id=<?= $bookId ?>'" title="Kembali">
-                    <i class="fe fe-x"></i>
+                <button class="btn-control" onclick="window.history.back()">
+                    Kembali
                 </button>
+
             </div>
         </div>
 
@@ -186,9 +187,10 @@ try {
                 <div style="color: white; text-align: center; padding: 50px;">
                     <h4>File tidak dapat dimuat</h4>
                     <p><?= $error ?></p>
-                    <button class="btn-control" onclick="window.location.href='detail.php?id=<?= $bookId ?>'">
-                        Kembali ke Detail
+                    <button class="btn-control" onclick="window.history.back()">
+                        Kembali
                     </button>
+
                 </div>
             <?php else: ?>
                 <iframe src="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>#toolbar=0&navpanes=0&scrollbar=0"
