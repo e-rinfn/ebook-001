@@ -193,7 +193,7 @@ try {
                     <p>📄 PDF tidak dapat ditampilkan di perangkat ini.</p>
                     <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>"
                         target="_blank"
-                        class="btn-control">Buka di Tab Baru</a>
+                        class="btn-control">Download</a>
                 </div>
             <?php endif; ?>
         </div>
