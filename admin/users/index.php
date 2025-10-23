@@ -67,7 +67,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">No</th> <!-- Tambahkan ini -->
+                                                    <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th class="text-center">Email</th>
                                                     <th class="text-center">Role</th>
@@ -76,37 +76,46 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1;
-                                                foreach ($users as $user): ?>
+                                                <?php if (empty($users)): ?>
                                                     <tr>
-                                                        <td><?= $no++ ?></td> <!-- Tambahkan ini -->
-                                                        <td><?= htmlspecialchars($user['nama']) ?></td>
-                                                        <td><?= htmlspecialchars($user['email']) ?></td>
-                                                        <td class="text-center">
-                                                            <?php if ($user['role'] === 'super_admin'): ?>
-                                                                <span class="badge badge-success">Super Admin</span>
-                                                            <?php else: ?>
-                                                                <span class="badge badge-primary">Admin</span>
-                                                            <?php endif; ?>
-                                                        </td>
-
-                                                        <td class="text-center"><?= date('d M Y', strtotime($user['created_at'])) ?></td>
-                                                        <td class="text-center">
-                                                            <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-edit"><i class="fe fe-edit"></i> Edit</a>
-                                                            <?php if ($user['id'] != $_SESSION['admin_id']): ?>
-                                                                <button class="btn btn-danger btn-delete"
-                                                                    data-id="<?= $user['id'] ?>"
-                                                                    data-nama="<?= htmlspecialchars($user['nama']) ?>">
-                                                                    <i class="fe fe-trash-2"></i> Hapus
-                                                                </button>
-                                                            <?php endif; ?>
+                                                        <td colspan="6" class="text-center text-muted py-4">
+                                                            <i class="fe fe-info"></i> Data tidak ditemukan
                                                         </td>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <?php $no = 1;
+                                                    foreach ($users as $user): ?>
+                                                        <tr>
+                                                            <td class="text-center"><?= $no++ ?></td>
+                                                            <td><?= htmlspecialchars($user['nama']) ?></td>
+                                                            <td><?= htmlspecialchars($user['email']) ?></td>
+                                                            <td class="text-center">
+                                                                <?php if ($user['role'] === 'super_admin'): ?>
+                                                                    <span class="badge badge-success">Super Admin</span>
+                                                                <?php else: ?>
+                                                                    <span class="badge badge-primary">Admin</span>
+                                                                <?php endif; ?>
+                                                            </td>
+                                                            <td class="text-center"><?= date('d M Y', strtotime($user['created_at'])) ?></td>
+                                                            <td class="text-center">
+                                                                <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-primary btn-edit">
+                                                                    <i class="fe fe-edit"></i> Edit
+                                                                </a>
+                                                                <?php if ($user['id'] != $_SESSION['admin_id']): ?>
+                                                                    <button class="btn btn-danger btn-delete"
+                                                                        data-id="<?= $user['id'] ?>"
+                                                                        data-nama="<?= htmlspecialchars($user['nama']) ?>">
+                                                                        <i class="fe fe-trash-2"></i> Hapus
+                                                                    </button>
+                                                                <?php endif; ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </tbody>
                                         </table>
-
                                     </div>
+
                                 </div>
                             </div>
 

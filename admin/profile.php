@@ -29,6 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <!-- Header -->
 <?php include '../includes/head.php'; ?>
 <!-- /Header -->
@@ -114,5 +117,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </footer>
     </div>
 </body>
+
+<!-- SweetAlert Logout Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const logoutButton = document.getElementById("btnLogout");
+
+        logoutButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Keluar dari akun?",
+                text: "Anda akan keluar dari sistem.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, Logout",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= $base_url ?>/auth/logout.php";
+                }
+            });
+        });
+    });
+</script>
 
 </html>

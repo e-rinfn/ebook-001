@@ -13,7 +13,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
             <img src="<?= $base_url ?>/assets/images/Logo.png" alt="Logo" style="height: 50px; margin-right: 10px;">
             <div class="d-flex flex-column">
                 <span class="font-weight-bold text-dark" style="line-height: 1.2;">E-BOOK</span>
-                <span class="font-weight-bold text-dark" style="line-height: 1.2;">PELAJARAN SEKOLAH MENENGAH PERTAMA</span>
+                <span class="font-weight-bold text-dark" style="line-height: 1.2;">PELAJARAN SMP</span>
             </div>
         </a>
     </div>

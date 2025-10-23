@@ -222,9 +222,15 @@ try {
                       <div class="col-6 col-md-4 col-lg-3 mb-4">
                         <div class="card h-100 d-flex flex-column">
                           <?php if ($book['cover_url']): ?>
-                            <img src="uploads/covers/<?= htmlspecialchars($book['cover_url']); ?>" class="card-img-top" alt="<?= htmlspecialchars($book['judul']); ?>">
+                            <img src="uploads/covers/<?= htmlspecialchars($book['cover_url']); ?>"
+                              class="card-img-top"
+                              alt="<?= htmlspecialchars($book['judul']); ?>"
+                              style="object-fit: cover; height: 250px;">
                           <?php else: ?>
-                            <img src="https://via.placeholder.com/150x200?text=No+Cover" class="card-img-top" alt="Cover tidak tersedia">
+                            <img src="https://via.placeholder.com/150x200?text=No+Cover"
+                              class="card-img-top"
+                              alt="Cover tidak tersedia"
+                              style="object-fit: cover; height: 250px;">
                           <?php endif; ?>
 
                           <div class="card-body d-flex flex-column">
@@ -232,29 +238,31 @@ try {
 
                             <p class="card-text text-justify" id="desc-<?= $book['id']; ?>">
                               <?= nl2br(htmlspecialchars(mb_strimwidth($book['deskripsi'], 0, 150, '...'))) ?>
-                              <!-- <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a> -->
                             </p>
+
                             <p class="card-text text-justify d-none" id="desc-full-<?= $book['id']; ?>">
                               <?= nl2br(htmlspecialchars($book['deskripsi'])) ?>
                               <a href="#" onclick="toggleDescription(<?= $book['id']; ?>, false); return false;"><br>Tutup</a>
                             </p>
 
                             <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
-                            <p class="card-text mb-3"><small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small></p>
+                            <p class="card-text mb-3">
+                              <small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small>
+                            </p>
 
-                            <!-- <div class="mt-auto">
-                              <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
-                            </div> -->
+                            <!-- Bagian tombol yang selalu di bawah -->
+                            <div class="mt-auto">
+                              <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
+                                Baca E-Book
+                              </a>
 
-                            <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
-                              Baca E-Book
-                            </a>
-
-                            <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
-                              Lihat Detail
-                            </a>
+                              <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
+                                Lihat Detail
+                              </a>
+                            </div>
                           </div>
                         </div>
+
                       </div>
                     <?php endforeach; ?>
                   </div>
@@ -270,40 +278,40 @@ try {
             <div class="row">
               <?php foreach ($latestBooks as $book): ?>
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
-                  <div class="card h-100">
+                  <div class="card h-100 d-flex flex-column">
                     <?php if ($book['cover_url']): ?>
-                      <img src="uploads/covers/<?= htmlspecialchars($book['cover_url']); ?>" class="card-img-top" alt="<?= htmlspecialchars($book['judul']); ?>">
+                      <img src="uploads/covers/<?= htmlspecialchars($book['cover_url']); ?>"
+                        class="card-img-top"
+                        alt="<?= htmlspecialchars($book['judul']); ?>">
                     <?php else: ?>
-                      <img src="https://via.placeholder.com/150x200?text=No+Cover" class="card-img-top" alt="Cover tidak tersedia">
+                      <img src="https://via.placeholder.com/150x200?text=No+Cover"
+                        class="card-img-top"
+                        alt="Cover tidak tersedia">
                     <?php endif; ?>
+
                     <div class="card-body d-flex flex-column">
                       <h5 class="card-title font-weight-bold"><?= htmlspecialchars($book['judul']); ?></h5>
 
                       <p class="card-text text-justify" id="desc-<?= $book['id']; ?>">
                         <?= nl2br(htmlspecialchars(mb_strimwidth($book['deskripsi'], 0, 150, '...'))) ?>
-                        <!-- <a href="#" onclick="toggleDescription(<?= $book['id']; ?>); return false;"><br>Lihat Selengkapnya</a> -->
-                      </p>
-                      <p class="card-text text-justify d-none" id="desc-full-<?= $book['id']; ?>">
-                        <?= nl2br(htmlspecialchars($book['deskripsi'])) ?>
-                        <a href="#" onclick="toggleDescription(<?= $book['id']; ?>, false); return false;"><br>Tutup</a>
                       </p>
 
                       <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
                       <p class="card-text mb-3"><small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small></p>
 
-                      <!-- <div class="mt-auto">
-                        <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" target="_blank" class="btn btn-sm btn-danger btn-block">Baca E-Book</a>
-                      </div> -->
+                      <!-- BAGIAN TOMBOL -->
+                      <div class="mt-auto"> <!-- inilah kuncinya -->
+                        <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
+                          Baca E-Book
+                        </a>
 
-                      <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
-                        Baca E-Book
-                      </a>
-
-                      <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
-                        Lihat Detail
-                      </a>
+                        <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
+                          Lihat Detail
+                        </a>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               <?php endforeach; ?>
             </div>

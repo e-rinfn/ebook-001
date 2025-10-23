@@ -73,22 +73,30 @@ $kategoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1;
-                                                foreach ($kategoris as $kategori): ?>
+                                                <?php if (empty($kategoris)): ?>
                                                     <tr>
-                                                        <td><?= $no++ ?></td> <!-- Tambahkan ini -->
-                                                        <td><?= htmlspecialchars($kategori['nama']) ?></td>
-                                                        <td><?= htmlspecialchars($kategori['deskripsi']) ?></td>
-                                                        <td class="text-center">
-                                                            <a href="edit.php?id=<?= $kategori['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
-                                                            <button class="btn btn-danger btn-delete"
-                                                                data-id="<?= $kategori['id'] ?>"
-                                                                data-nama="<?= htmlspecialchars($kategori['nama']) ?>">
-                                                                <i class="fe fe-trash-2"></i> Hapus
-                                                            </button>
+                                                        <td colspan="4" class="text-center text-muted py-4">
+                                                            <i class="fe fe-info"></i> Data tidak ditemukan
                                                         </td>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <?php $no = 1;
+                                                    foreach ($kategoris as $kategori): ?>
+                                                        <tr>
+                                                            <td><?= $no++ ?></td> <!-- Tambahkan ini -->
+                                                            <td><?= htmlspecialchars($kategori['nama']) ?></td>
+                                                            <td><?= htmlspecialchars($kategori['deskripsi']) ?></td>
+                                                            <td class="text-center">
+                                                                <a href="edit.php?id=<?= $kategori['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
+                                                                <button class="btn btn-danger btn-delete"
+                                                                    data-id="<?= $kategori['id'] ?>"
+                                                                    data-nama="<?= htmlspecialchars($kategori['nama']) ?>">
+                                                                    <i class="fe fe-trash-2"></i> Hapus
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </tbody>
                                         </table>
 

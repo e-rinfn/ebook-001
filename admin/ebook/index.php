@@ -83,32 +83,40 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1;
-                                                foreach ($ebooks as $ebook): ?>
+                                                <?php if (empty($ebooks)): ?>
                                                     <tr>
-                                                        <td><?= $no++ ?></td> <!-- Tambahkan ini -->
-                                                        <td>
-                                                            <?php if ($ebook['cover_url']): ?>
-                                                                <a href="../../uploads/covers/<?= htmlspecialchars($ebook['cover_url']) ?>" target="_blank" rel="noopener noreferrer">
-                                                                    <img src="../../uploads/covers/<?= htmlspecialchars($ebook['cover_url']) ?>" alt="Cover" width="50">
-                                                                </a>
-                                                            <?php else: ?>
-                                                                <div class="no-cover">No Cover</div>
-                                                            <?php endif; ?>
-                                                        </td>
-
-                                                        <td><?= htmlspecialchars($ebook['judul']) ?></td>
-                                                        <td><?= htmlspecialchars($ebook['penulis']) ?></td>
-                                                        <td><?= $ebook['kategori_nama'] ?? '-' ?></td>
-                                                        <td class="text-center"><?= $ebook['tahun_terbit'] ?></td>
-                                                        <td class="text-center">
-                                                            <a href="edit.php?id=<?= $ebook['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
-                                                            <a href="delete.php?id=<?= $ebook['id'] ?>" class="btn btn-danger btn-delete" data-id="<?= $ebook['id'] ?>">
-                                                                <i class="fe fe-trash-2"></i> Hapus
-                                                            </a>
+                                                        <td colspan="7" class="text-center text-muted py-4">
+                                                            <i class="fe fe-info"></i> Data tidak ditemukan
                                                         </td>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <?php $no = 1;
+                                                    foreach ($ebooks as $ebook): ?>
+                                                        <tr>
+                                                            <td><?= $no++ ?></td> <!-- Tambahkan ini -->
+                                                            <td>
+                                                                <?php if ($ebook['cover_url']): ?>
+                                                                    <a href="../../uploads/covers/<?= htmlspecialchars($ebook['cover_url']) ?>" target="_blank" rel="noopener noreferrer">
+                                                                        <img src="../../uploads/covers/<?= htmlspecialchars($ebook['cover_url']) ?>" alt="Cover" width="50">
+                                                                    </a>
+                                                                <?php else: ?>
+                                                                    <div class="no-cover">No Cover</div>
+                                                                <?php endif; ?>
+                                                            </td>
+
+                                                            <td><?= htmlspecialchars($ebook['judul']) ?></td>
+                                                            <td><?= htmlspecialchars($ebook['penulis']) ?></td>
+                                                            <td><?= $ebook['kategori_nama'] ?? '-' ?></td>
+                                                            <td class="text-center"><?= $ebook['tahun_terbit'] ?></td>
+                                                            <td class="text-center">
+                                                                <a href="edit.php?id=<?= $ebook['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
+                                                                <a href="delete.php?id=<?= $ebook['id'] ?>" class="btn btn-danger btn-delete" data-id="<?= $ebook['id'] ?>">
+                                                                    <i class="fe fe-trash-2"></i> Hapus
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </tbody>
                                         </table>
 
@@ -133,6 +141,7 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </footer>
         </div>
 </body>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
