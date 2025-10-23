@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$nama, $email, $hashed_password, $role]);
 
             $_SESSION['success'] = "Pengguna berhasil ditambahkan";
-            redirect('index.php?success=add');
+            redirect('index.php');
         }
     }
 }

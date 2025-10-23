@@ -10,6 +10,8 @@ $stmt->execute(["%$search%"]);
 $kategoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Header -->
 <?php include '../../includes/head.php'; ?>
 <!-- /Header -->
@@ -36,12 +38,12 @@ $kategoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control" placeholder="Cari kategori..." value="<?= htmlspecialchars($search ?? '') ?>">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
-                                        <a href="index.php" class="btn btn-warning">Reset</a>
+                                        <button class="btn btn-primary" type="submit"><i class="fe fe-search"></i> Cari</button>
+                                        <a href="index.php" class="btn btn-secondary"><i class="fe fe-clock"></i> Reset</a>
                                     </div>
                                 </div>
                             </form>
-                            <a href="add.php" class="btn btn-success ml-md-2">Tambah Kategori</a>
+                            <a href="add.php" class="btn btn-success ml-md-2"><i class="fe fe-plus"></i> Tambah Kategori</a>
                         </div>
 
                         <?php if (isset($_GET['success'])): ?>
@@ -78,8 +80,12 @@ $kategoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?= htmlspecialchars($kategori['nama']) ?></td>
                                                         <td><?= htmlspecialchars($kategori['deskripsi']) ?></td>
                                                         <td class="text-center">
-                                                            <a href="edit.php?id=<?= $kategori['id'] ?>" class="btn btn-primary btn-edit">Edit</a>
-                                                            <a href="delete.php?id=<?= $kategori['id'] ?>" class="btn btn-danger btn-delete" onclick="return confirm('Yakin hapus kategori e-book ini?')">Hapus</a>
+                                                            <a href="edit.php?id=<?= $kategori['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
+                                                            <button class="btn btn-danger btn-delete"
+                                                                data-id="<?= $kategori['id'] ?>"
+                                                                data-nama="<?= htmlspecialchars($kategori['nama']) ?>">
+                                                                <i class="fe fe-trash-2"></i> Hapus
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -107,5 +113,34 @@ $kategoris = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </footer>
         </div>
 </body>
+
+<!-- SweetAlert Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll(".btn-delete");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const id = this.getAttribute("data-id");
+                const nama = this.getAttribute("data-nama");
+
+                Swal.fire({
+                    title: "Hapus Kategori?",
+                    text: `Apakah Anda yakin ingin menghapus kategori "${nama}"?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Batal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `delete.php?id=${id}`;
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 </html>

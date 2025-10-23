@@ -35,15 +35,17 @@ $latestEbooks = $pdo->query("SELECT * FROM ebook ORDER BY created_at DESC LIMIT 
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="card">
                                     <div class="card-body p-3 text-center">
-                                        <div class="h1 m-0 mt-2"><?= $totalEbooks ?></div>
-                                        <div class="text-muted mb-4">Total Ebook</div>
+                                        <div class="h1 m-0 mt-2"><i class="fe fe-book"></i> <?= $totalEbooks ?></div>
+                                        <div class="text-muted mb-4">
+                                            Total Ebook
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-sm-4 col-lg-2">
                                 <div class="card">
                                     <div class="card-body p-3 text-center">
-                                        <div class="h1 m-0 mt-2"><?= $totalKategoris ?></div>
+                                        <div class="h1 m-0 mt-2"><i class="fe fe-hash"></i> <?= $totalKategoris ?></div>
                                         <div class="text-muted mb-4">Total Kategori</div>
                                     </div>
                                 </div>
@@ -57,32 +59,37 @@ $latestEbooks = $pdo->query("SELECT * FROM ebook ORDER BY created_at DESC LIMIT 
 
                         <div class="row row-cards row-deck">
                             <div class="col-12">
-                                <div class="card">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th> <!-- Tambahkan ini -->
-                                                    <th>Judul</th>
-                                                    <th>Penulis</th>
-                                                    <th class="text-center">Tahun</th>
-                                                    <th>Tanggal Upload</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $no = 1;
-                                                foreach ($latestEbooks as $ebook): ?>
-                                                    <tr>
-                                                        <td><?= $no++ ?></td> <!-- Tambahkan ini -->
-                                                        <td><?= htmlspecialchars($ebook['judul']) ?></td>
-                                                        <td><?= htmlspecialchars($ebook['penulis']) ?></td>
-                                                        <td class="text-center"><?= $ebook['tahun_terbit'] ?></td>
-                                                        <td><?= date('d M Y', strtotime($ebook['created_at'])) ?></td>
+                                <div class="card shadow-sm border-0">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive table-bordered">
+                                            <table class="table table-hover align-middle mb-0">
+                                                <thead class="table-light border-bottom">
+                                                    <tr class="text-center text-uppercase small text-muted">
+                                                        <th>No</th>
+                                                        <th>ISBN</th>
+                                                        <th>Judul</th>
+                                                        <th>Penulis</th>
+                                                        <th>Halaman</th>
+                                                        <th>Tahun</th>
+                                                        <th>Tanggal Upload</th>
                                                     </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-
+                                                </thead>
+                                                <tbody>
+                                                    <?php $no = 1;
+                                                    foreach ($latestEbooks as $ebook): ?>
+                                                        <tr>
+                                                            <td class="text-center fw-semibold"><?= $no++ ?></td>
+                                                            <td><?= htmlspecialchars($ebook['isbn']) ?></td>
+                                                            <td><?= htmlspecialchars($ebook['judul']) ?></td>
+                                                            <td><?= htmlspecialchars($ebook['penulis']) ?></td>
+                                                            <td class="text-center"><?= $ebook['jumlah_halaman'] ?? '-' ?></td>
+                                                            <td class="text-center"><?= $ebook['tahun_terbit'] ?></td>
+                                                            <td class="text-center"><?= date('d M Y', strtotime($ebook['created_at'])) ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

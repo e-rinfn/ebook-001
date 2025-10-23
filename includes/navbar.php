@@ -4,6 +4,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 $current_dir = basename(dirname($_SERVER['PHP_SELF']));
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Navbar -->
 <div class="container">
     <div class="d-flex">
@@ -57,13 +59,40 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
                             <i class="fe fe-user"></i> Profil
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="<?= $base_url ?>/auth/logout.php" class="nav-link">
+                    <li class="nav-item text-white">
+                        <!-- Tombol Logout ubah jadi button -->
+                        <button id="btnLogout" class="nav-link btn-danger rounded p-3 border-0">
                             <i class="fe fe-log-out"></i> Logout
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+<!-- SweetAlert Logout Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const logoutButton = document.getElementById("btnLogout");
+
+        logoutButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Keluar dari akun?",
+                text: "Anda akan keluar dari sistem.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, Logout",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= $base_url ?>/auth/logout.php";
+                }
+            });
+        });
+    });
+</script>

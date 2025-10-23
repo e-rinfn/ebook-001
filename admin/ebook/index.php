@@ -17,6 +17,9 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Header -->
 <?php include '../../includes/head.php'; ?>
 <!-- /Header -->
@@ -43,12 +46,12 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control" placeholder="Cari judul atau penulis..." value="<?= htmlspecialchars($search ?? '') ?>">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
-                                        <a href="index.php" class="btn btn-warning">Reset</a>
+                                        <button class="btn btn-primary" type="submit"><i class="fe fe-search"></i> Cari</button>
+                                        <a href="index.php" class="btn btn-secondary"><i class="fe fe-clock"></i> Reset</a>
                                     </div>
                                 </div>
                             </form>
-                            <a href="add.php" class="btn btn-success ml-md-2">Tambah E-Book</a>
+                            <a href="add.php" class="btn btn-success ml-md-2"><i class="fe fe-plus"></i> Tambah E-Book</a>
                         </div>
 
                         <?php if (isset($_GET['success'])): ?>
@@ -99,8 +102,10 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                         <td><?= $ebook['kategori_nama'] ?? '-' ?></td>
                                                         <td class="text-center"><?= $ebook['tahun_terbit'] ?></td>
                                                         <td class="text-center">
-                                                            <a href="edit.php?id=<?= $ebook['id'] ?>" class="btn btn-primary btn-edit">Edit</a>
-                                                            <a href="delete.php?id=<?= $ebook['id'] ?>" class="btn btn-danger btn-delete" onclick="return confirm('Yakin hapus e-book ini?')">Hapus</a>
+                                                            <a href="edit.php?id=<?= $ebook['id'] ?>" class="btn btn-primary btn-edit"><i class="fe fe-edit"></i> Edit</a>
+                                                            <a href="delete.php?id=<?= $ebook['id'] ?>" class="btn btn-danger btn-delete" data-id="<?= $ebook['id'] ?>">
+                                                                <i class="fe fe-trash-2"></i> Hapus
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -128,5 +133,45 @@ $ebooks = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </footer>
         </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // cegah langsung redirect
+                const href = this.getAttribute('href');
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data e-book ini akan dihapus secara permanen!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // tampilkan loading sebentar
+                        Swal.fire({
+                            title: 'Menghapus...',
+                            text: 'Harap tunggu',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading()
+                            }
+                        });
+                        // arahkan ke halaman delete
+                        window.location.href = href;
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 
 </html>

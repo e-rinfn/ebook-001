@@ -78,13 +78,34 @@ try {
                                     <div class="card h-100 shadow-sm">
                                         <?php if ($book['cover_url']): ?>
                                             <img src="uploads/covers/<?= htmlspecialchars($book['cover_url']); ?>"
-                                                class="card-img-top"
+                                                class="card-img-top mt-2 responsive-cover"
                                                 alt="<?= htmlspecialchars($book['judul']); ?>">
                                         <?php else: ?>
                                             <img src="https://via.placeholder.com/300x400?text=No+Cover"
-                                                class="card-img-top"
+                                                class="card-img-top mt-2 responsive-cover"
                                                 alt="Cover tidak tersedia">
                                         <?php endif; ?>
+
+                                        <style>
+                                            /* Ukuran default (desktop) */
+                                            .responsive-cover {
+                                                width: 100%;
+                                                max-width: 300px;
+                                                /* batas maksimal di desktop */
+                                                height: auto;
+                                                margin: 0 auto;
+                                                display: block;
+                                            }
+
+                                            /* Ukuran lebih kecil di mobile */
+                                            @media (max-width: 768px) {
+                                                .responsive-cover {
+                                                    max-width: 180px;
+                                                    /* perkecil ukuran di mobile */
+                                                }
+                                            }
+                                        </style>
+
 
                                         <div class="card-body text-center">
                                             <div class="d-flex justify-content-center gap-2 flex-wrap">
@@ -162,7 +183,7 @@ try {
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p class="mb-1"><strong>Halaman:</strong> <?= htmlspecialchars($book['jumlah_halaman'] ?: 'Tidak tersedia'); ?></p>
-                                                    <p class="mb-1"><strong>Penerbit:</strong> <?= htmlspecialchars($book['penerbit'] ?: 'Tidak tersedia'); ?></p>
+                                                    <p class="mb-1"><strong>Penulis:</strong> <?= htmlspecialchars($book['penulis'] ?: 'Tidak tersedia'); ?></p>
                                                 </div>
                                             </div>
                                         </div>

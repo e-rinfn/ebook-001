@@ -14,6 +14,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Header -->
 <?php include '../../includes/head.php'; ?>
 <!-- /Header -->
@@ -40,18 +42,17 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="input-group">
                                     <input type="text" name="search" class="form-control" placeholder="Cari pengguna..." value="<?= htmlspecialchars($search ?? '') ?>">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Cari</button>
-                                        <a href="index.php" class="btn btn-warning">Reset</a>
+                                        <button class="btn btn-primary" type="submit"><i class="fe fe-search"></i> Cari</button>
+                                        <a href="index.php" class="btn btn-secondary"><i class="fe fe-clock"></i> Reset</a>
                                     </div>
                                 </div>
                             </form>
-                            <a href="add.php" class="btn btn-success ml-md-2">Tambah Pengguna</a>
+                            <a href="add.php" class="btn btn-success ml-md-2"><i class="fe fe-plus"></i> Tambah Pengguna</a>
                         </div>
 
-                        <?php if (isset($_GET['success'])): ?>
-                            <div class="alert alert-success">
-                                Pengguna berhasil <?= $_GET['success'] === 'add' ? 'ditambahkan' : 'diperbarui' ?>!
-                            </div>
+                        <?php if (isset($_SESSION['success'])): ?>
+                            <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                            <?php unset($_SESSION['success']); ?>
                         <?php endif; ?>
 
                         <?php if (isset($_SESSION['error'])): ?>
@@ -91,9 +92,13 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                                         <td class="text-center"><?= date('d M Y', strtotime($user['created_at'])) ?></td>
                                                         <td class="text-center">
-                                                            <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-edit">Edit</a>
+                                                            <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-warning btn-edit"><i class="fe fe-edit"></i> Edit</a>
                                                             <?php if ($user['id'] != $_SESSION['admin_id']): ?>
-                                                                <a href="delete.php?id=<?= $user['id'] ?>" class="btn btn-danger btn-delete" onclick="return confirm('Yakin hapus pengguna ini?')">Hapus</a>
+                                                                <button class="btn btn-danger btn-delete"
+                                                                    data-id="<?= $user['id'] ?>"
+                                                                    data-nama="<?= htmlspecialchars($user['nama']) ?>">
+                                                                    <i class="fe fe-trash-2"></i> Hapus
+                                                                </button>
                                                             <?php endif; ?>
                                                         </td>
                                                     </tr>
@@ -122,5 +127,34 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </footer>
         </div>
 </body>
+
+<!-- SweetAlert Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll(".btn-delete");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const id = this.getAttribute("data-id");
+                const nama = this.getAttribute("data-nama");
+
+                Swal.fire({
+                    title: "Hapus Pengguna?",
+                    text: `Apakah Anda yakin ingin menghapus pengguna "${nama}"?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Batal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `delete.php?id=${id}`;
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 </html>

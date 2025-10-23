@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <div class="d-flex justify-content-between">
-                                        <button type="submit" class="btn btn-warning">Update</button>
+                                        <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
                                         <a href="index.php" class="btn btn-secondary">Batal</a>
                                     </div>
                                 </form>
