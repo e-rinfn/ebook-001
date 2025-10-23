@@ -108,15 +108,24 @@ try {
 
 
                                         <div class="card-body text-center">
-                                            <div class="d-flex justify-content-center gap-2 flex-wrap">
-                                                <a href="index.php" class="btn btn-secondary btn-lg">
+                                            <div class="btn-group btn-group-lg" role="group" aria-label="Aksi Ebook">
+                                                <a href="index.php" class="btn btn-outline-secondary">
                                                     <i class="fe fe-arrow-left"></i> Kembali
                                                 </a>
-                                                <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-outline-danger btn-lg">
-                                                    <i class="fe fe-eye"></i> Baca Online
+                                                <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-outline-danger">
+                                                    <i class="fe fe-eye"></i> Baca
                                                 </a>
+                                                <?php if (!empty($book['file_url'])): ?>
+                                                    <a href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>"
+                                                        class="btn btn-outline-success"
+                                                        download>
+                                                        <i class="fe fe-download"></i> Download
+                                                    </a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
+
+
 
                                     </div>
                                 </div>
