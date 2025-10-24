@@ -252,9 +252,15 @@ try {
 
                             <!-- Bagian tombol yang selalu di bawah -->
                             <div class="mt-auto">
-                              <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
+                              <a target="_blank" href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" class="btn btn-sm btn-danger btn-block mt-2">
                                 Baca E-Book
                               </a>
+
+                              <!-- <a target="_blank" href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>"
+                                class="btn btn-outline-success"
+                                download>
+                                <i class="fe fe-download"></i> Baca E-Book
+                              </a> -->
 
                               <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
                                 Lihat Detail
@@ -301,9 +307,16 @@ try {
 
                       <!-- BAGIAN TOMBOL -->
                       <div class="mt-auto"> <!-- inilah kuncinya -->
-                        <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-danger btn-block mt-2">
+
+                        <a target="_blank" href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" class="btn btn-sm btn-danger btn-block mt-2">
                           Baca E-Book
                         </a>
+
+                        <!-- <a target="_blank" href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>"
+                          class="btn btn-outline-success"
+                          download>
+                          <i class="fe fe-download"></i> Baca E-Book
+                        </a> -->
 
                         <a href="detail.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary btn-block mt-2">
                           Lihat Detail
