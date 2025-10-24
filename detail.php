@@ -112,7 +112,7 @@ try {
                                                 <a href="index.php" class="btn btn-outline-secondary">
                                                     <i class="fe fe-arrow-left"></i> Kembali
                                                 </a>
-                                                <a href="reader.php?id=<?= $book['id'] ?>" class="btn btn-outline-danger">
+                                                <a target="_blank" href="uploads/ebooks/<?= htmlspecialchars($book['file_url']); ?>" class="btn btn-outline-danger">
                                                     <i class="fe fe-eye"></i> Baca
                                                 </a>
                                                 <?php if (!empty($book['file_url'])): ?>
