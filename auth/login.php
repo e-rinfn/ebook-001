@@ -91,7 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <button type="submit" class="btn btn-danger btn-block">Masuk</button>
+                    <button type="button" class="btn btn-secondary btn-block mt-2" id="superadmin-btn"> Demo Login</button>
                 </form>
+
+                <script>
+                    document.getElementById('superadmin-btn').addEventListener('click', function() {
+                        document.getElementById('email').value = 'superadmin@mail.com';
+                        document.getElementById('password').value = 'superadmin';
+                        document.querySelector('form').submit();
+                    });
+                </script>
 
             </div>
         </div>

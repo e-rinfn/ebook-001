@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="6">
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                    <button disabled type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                 </form>
                             </div>
                         </div>

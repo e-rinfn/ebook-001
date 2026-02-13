@@ -47,7 +47,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                             </form>
-                            <a href="add.php" class="btn btn-success ml-md-2"><i class="fe fe-plus"></i> Tambah Pengguna</a>
+                            <a href="add.php" class="disabled btn btn-success ml-md-2"><i class="fe fe-plus"></i> Tambah Pengguna</a>
                         </div>
 
                         <?php if (isset($_SESSION['success'])): ?>
@@ -98,7 +98,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                             </td>
                                                             <td class="text-center"><?= date('d M Y', strtotime($user['created_at'])) ?></td>
                                                             <td class="text-center">
-                                                                <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-primary btn-edit">
+                                                                <a href="edit.php?id=<?= $user['id'] ?>" class="disabled btn btn-primary btn-edit">
                                                                     <i class="fe fe-edit"></i> Edit
                                                                 </a>
                                                                 <?php if ($user['id'] != $_SESSION['admin_id']): ?>
