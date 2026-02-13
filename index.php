@@ -245,7 +245,7 @@ try {
                               <a href="#" onclick="toggleDescription(<?= $book['id']; ?>, false); return false;"><br>Tutup</a>
                             </p>
 
-                            <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
+                            <p class="card-text mb-1">Penulis: <strong><?= htmlspecialchars($book['penulis']); ?></strong></p>
                             <p class="card-text mb-3">
                               <small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small>
                             </p>
@@ -302,7 +302,7 @@ try {
                         <?= nl2br(htmlspecialchars(mb_strimwidth($book['deskripsi'], 0, 150, '...'))) ?>
                       </p>
 
-                      <p class="card-text mb-1">Oleh: <?= htmlspecialchars($book['penulis']); ?></p>
+                      <p class="card-text mb-1">Penulis: <strong><?= htmlspecialchars($book['penulis']); ?></strong></p>
                       <p class="card-text mb-3"><small class="text-muted">Tahun: <?= htmlspecialchars($book['tahun_terbit']); ?></small></p>
 
                       <!-- BAGIAN TOMBOL -->

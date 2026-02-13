@@ -61,7 +61,7 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
                     </li>
                     <li class="nav-item text-white">
                         <!-- Tombol Logout ubah jadi button -->
-                        <button id="btnLogout" class="nav-link btn-danger rounded p-3 border-0">
+                        <button id="btnLogout" class="nav-link btn-danger rounded p-3">
                             <i class="fe fe-log-out"></i> Logout
                         </button>
                     </li>
